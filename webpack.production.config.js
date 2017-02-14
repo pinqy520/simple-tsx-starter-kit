@@ -8,20 +8,21 @@ var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 // local css modules
 loaders.push({
-	test: /[\/\\]src[\/\\].*\.css/,
-	exclude: /(node_modules|bower_components|public)/,
+	test: /\.css$/,
+	exclude: ['node_modules'],
 	loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
 });
 
 // local scss modules
 loaders.push({
-	test: /[\/\\]src[\/\\].*\.scss/,
-	exclude: /(node_modules|bower_components|public)/,
+	test: /\.scss$/,
+	exclude: ['node_modules'],
 	loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
 });
 // global css files
 loaders.push({
-	test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
+	test: /\.css$/,
+	include: ['node_modules'],
 	loader: ExtractTextPlugin.extract('style', 'css')
 });
 
