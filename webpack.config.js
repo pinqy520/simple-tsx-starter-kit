@@ -12,8 +12,8 @@ loaders.push({
 	test: /\.css$/,
 	include: ['node_modules'],
 	loaders: [
-		'style?sourceMap',
-		'css'
+		'style-loader',
+		'css-loader'
 	]
 });
 // local scss modules
@@ -21,10 +21,10 @@ loaders.push({
 	test: /\.scss$/,
 	exclude: ['node_modules'],
 	loaders: [
-		'style?sourceMap',
-		'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-		'postcss',
-		'sass'
+		'style-loader?sourceMap',
+		'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+		'postcss-loader',
+		'sass-loader'
 	]
 });
 
@@ -33,8 +33,9 @@ loaders.push({
 	test: /\.css$/,
 	exclude: ['node_modules'],
 	loaders: [
-		'style?sourceMap',
-		'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+		'style-loader?sourceMap',
+		'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+		'postcss-loader',
 	]
 });
 
@@ -49,7 +50,7 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	resolve: {
-		extensions: ['', '.ts', '.tsx', '.js', '.jsx']
+		extensions: ['.ts', '.tsx', '.js', '.jsx']
 	},
 	module: {
 		loaders
@@ -68,7 +69,7 @@ module.exports = {
 		// host: HOST
 	},
 	plugins: [
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			template: './src/template.html'
